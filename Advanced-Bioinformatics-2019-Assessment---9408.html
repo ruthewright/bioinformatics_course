@@ -427,7 +427,6 @@ print(Task5)</code></pre>
 </div>
 <div id="task-7" class="section level2">
 <h2>Task 7</h2>
-<p>Again using the cars dataset, now use linear regression (lm) to estimate the average reaction time for the driver to start breaking (in seconds). To simplify matters you may assume that once breaking commences, breaking distance is proportional to the square of the speed. You may also use that 1 mile = 5280 feet and 1h = 3600 seconds. Note that you’ll need to use the I() function in the regression formula to make sure any non-linear terms gets treated literally, rather than as combinations of factors (e.g. I(x^2) for a term quadratic in the variable x).</p>
 <p>Again using the cars dataset, now use linear regression (lm) to estimate the average reaction time for the driver to start breaking (in seconds).</p>
 <p>To simplify matters you may assume that once breaking commences, breaking distance is proportional to the square of the speed.</p>
 <p>Explain the steps in your analysis. Do you get reasonable results? Finally, use ggplot to plot the data points and the fitted relationship. (10pt)</p>
@@ -452,13 +451,17 @@ summary(ReactionTime)</code></pre>
 ## Residual standard error: 15.61 on 49 degrees of freedom
 ## Multiple R-squared:  0.9044, Adjusted R-squared:  0.9025 
 ## F-statistic: 463.8 on 1 and 49 DF,  p-value: &lt; 2.2e-16</code></pre>
-<pre class="r"><code>feetinamile&lt;-5280
+<pre class="r"><code>#units for conversion
+feetinamile&lt;-5280
 secondsinahour&lt;-3600
 
+#calculate the reaction distance 
 AverageRDmph&lt;-mean(ReactionTime$residuals)
 AverageRDftph&lt;-AverageRDmph*feetinamile
 AverageRDftps&lt;-AverageRDftph/secondsinahour
-MS&lt;-mean(((cars$speed)/3600)*5480)
+#find the converted mean of speed
+MS&lt;-mean(((cars$speed)/3600)*5480) 
+#find the average reaction time 
 AverageRTftps&lt;-AverageRDftps/MS
 print (paste0(&quot;The average reaction time in feet per second is &quot;, AverageRTftps))</code></pre>
 <pre><code>## [1] &quot;The average reaction time in feet per second is 0.150371634783189&quot;</code></pre>
