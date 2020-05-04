@@ -2,7 +2,7 @@
 title: "Advanced Bioinformatics 2019 Assessment"
 author: '9408'
 date: "28/03/2020"
-output: git_document
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
